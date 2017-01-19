@@ -48,6 +48,14 @@
       <HintPath>D:\SS\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -81,6 +89,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -99,6 +109,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ADdatabase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ADdatabase.edmx</DependentUpon>
+      <LastGenOutput>ADdatabase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ADdatabase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ADdatabase.edmx</DependentUpon>
+      <LastGenOutput>ADdatabase.cs</LastGenOutput>
+    </Content>
     <Content Include="calenderExtender.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -109,6 +129,14 @@
     <Content Include="SSissueStockAdjVocher.aspx" />
     <Content Include="SSrequisitionTrendAnalysis.aspx" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
+    <EntityDeploy Include="ADdatabase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ADdatabase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ADdatabase.edmx.diagram">
+      <DependentUpon>ADdatabase.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -121,13 +149,62 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADdatabase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADdatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADdatabase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADdatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADdatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustmentItem.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustmentVoucher.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassList.cs" />
+    <Compile Include="Department.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Disbursement.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DisbursementItem.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItem.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requisition.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequisitionItem.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SOrder.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="SSapproveRejectOrder.aspx.cs">
       <DependentUpon>SSapproveRejectOrder.aspx</DependentUpon>
@@ -157,6 +234,18 @@
     <Compile Include="SSrequisitionTrendAnalysis.aspx.designer.cs">
       <DependentUpon>SSrequisitionTrendAnalysis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TenderQuotation.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
+      <DependentUpon>ADdatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -164,6 +253,16 @@
     <Compile Include="WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

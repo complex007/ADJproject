@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="team6adprojectdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdjustmentItem">
+    <Key>
+      <PropertyRef Name="vouchernumber" />
+      <PropertyRef Name="itemcode" />
+    </Key>
+    <Property Name="vouchernumber" Type="Int32" Nullable="false" />
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AdjustmentVoucher" Relationship="Self.FK_AdjustmentItem_AdjustmentVoucher" FromRole="AdjustmentItem" ToRole="AdjustmentVoucher" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_AdjustmentItem_Item" FromRole="AdjustmentItem" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="AdjustmentVoucher">
+    <Key>
+      <PropertyRef Name="vouchernumber" />
+    </Key>
+    <Property Name="vouchernumber" Type="Int32" Nullable="false" />
+    <Property Name="issuedate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cost" Type="Double" Nullable="false" />
+    <Property Name="clerkcode" Type="Int32" Nullable="false" />
+    <Property Name="approvercode" Type="Int32" />
+    <Property Name="approveddate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="AdjustmentItems" Relationship="Self.FK_AdjustmentItem_AdjustmentVoucher" FromRole="AdjustmentVoucher" ToRole="AdjustmentItem" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_AdjustmentVoucher_Employee" FromRole="AdjustmentVoucher" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_AdjustmentVoucher_Employee1" FromRole="AdjustmentVoucher" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="deptcode" />
+    </Key>
+    <Property Name="deptcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="deptname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="contactname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="phoneno" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="faxno" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="collectionpoint" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="delegatecode" Type="Int32" />
+    <Property Name="startdate" Type="DateTime" Precision="0" />
+    <Property Name="enddate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Department_Employee" FromRole="Department" ToRole="Employee" />
+    <NavigationProperty Name="Disbursements" Relationship="Self.FK_Disbursement_Department" FromRole="Department" ToRole="Disbursement" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+    <NavigationProperty Name="Requisitions" Relationship="Self.FK_Requisition_Department" FromRole="Department" ToRole="Requisition" />
+  </EntityType>
+  <EntityType Name="Disbursement">
+    <Key>
+      <PropertyRef Name="disbursementid" />
+    </Key>
+    <Property Name="disbursementid" Type="Int32" Nullable="false" />
+    <Property Name="deptcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="representativecode" Type="Int32" Nullable="false" />
+    <Property Name="collectiondate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Disbursement_Department" FromRole="Disbursement" ToRole="Department" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Disbursement_Employee" FromRole="Disbursement" ToRole="Employee" />
+    <NavigationProperty Name="DisbursementItems" Relationship="Self.FK_DisbursementItem_Disbursement" FromRole="Disbursement" ToRole="DisbursementItem" />
+  </EntityType>
+  <EntityType Name="DisbursementItem">
+    <Key>
+      <PropertyRef Name="disbursementid" />
+      <PropertyRef Name="itemcode" />
+    </Key>
+    <Property Name="disbursementid" Type="Int32" Nullable="false" />
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="allocatedquantity" Type="Int32" Nullable="false" />
+    <Property Name="actualquantity" Type="Int32" />
+    <NavigationProperty Name="Disbursement" Relationship="Self.FK_DisbursementItem_Disbursement" FromRole="DisbursementItem" ToRole="Disbursement" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_DisbursementItem_Item" FromRole="DisbursementItem" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employeecode" />
+    </Key>
+    <Property Name="employeecode" Type="Int32" Nullable="false" />
+    <Property Name="employeename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="employeeemail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="deptcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AdjustmentVouchers" Relationship="Self.FK_AdjustmentVoucher_Employee" FromRole="Employee" ToRole="AdjustmentVoucher" />
+    <NavigationProperty Name="AdjustmentVouchers1" Relationship="Self.FK_AdjustmentVoucher_Employee1" FromRole="Employee" ToRole="AdjustmentVoucher" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Employee" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="Disbursements" Relationship="Self.FK_Disbursement_Employee" FromRole="Employee" ToRole="Disbursement" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
+    <NavigationProperty Name="Orders1" Relationship="Self.FK_Order_Employee1" FromRole="Employee" ToRole="Order" />
+    <NavigationProperty Name="Orders2" Relationship="Self.FK_Order_Employee2" FromRole="Employee" ToRole="Order" />
+    <NavigationProperty Name="Requisitions" Relationship="Self.FK_Requisition_Employee" FromRole="Employee" ToRole="Requisition" />
+    <NavigationProperty Name="Requisitions1" Relationship="Self.FK_Requisition_Employee1" FromRole="Employee" ToRole="Requisition" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="itemcode" />
+    </Key>
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="itemdescripion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="bin" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="quantityonhand" Type="Int32" Nullable="false" />
+    <Property Name="reorderlevel" Type="Int32" Nullable="false" />
+    <Property Name="reorderquantity" Type="Int32" Nullable="false" />
+    <Property Name="unitofmeasure" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="supplier1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="supplier2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="supplier3" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AdjustmentItems" Relationship="Self.FK_AdjustmentItem_Item" FromRole="Item" ToRole="AdjustmentItem" />
+    <NavigationProperty Name="DisbursementItems" Relationship="Self.FK_DisbursementItem_Item" FromRole="Item" ToRole="DisbursementItem" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Item_Supplier" FromRole="Item" ToRole="Supplier" />
+    <NavigationProperty Name="Supplier4" Relationship="Self.FK_Item_Supplier1" FromRole="Item" ToRole="Supplier" />
+    <NavigationProperty Name="Supplier5" Relationship="Self.FK_Item_Supplier2" FromRole="Item" ToRole="Supplier" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItem_Item" FromRole="Item" ToRole="OrderItem" />
+    <NavigationProperty Name="RequisitionItems" Relationship="Self.FK_RequisitionItem_Item" FromRole="Item" ToRole="RequisitionItem" />
+    <NavigationProperty Name="TenderQuotations" Relationship="Self.FK_TenderQuotation_Item" FromRole="Item" ToRole="TenderQuotation" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Item" FromRole="Item" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="purchaseordernumber" />
+    </Key>
+    <Property Name="purchaseordernumber" Type="Int32" Nullable="false" />
+    <Property Name="suppliercode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="storeclerkcode" Type="Int32" Nullable="false" />
+    <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="totalcost" Type="Double" />
+    <Property Name="approvercode" Type="Int32" />
+    <Property Name="approvaldate" Type="DateTime" Precision="0" />
+    <Property Name="expecteddeliverydate" Type="DateTime" Precision="0" />
+    <Property Name="deliveryordernumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="deliverydate" Type="DateTime" Precision="0" />
+    <Property Name="receivercode" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_Order_Employee1" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="Employee2" Relationship="Self.FK_Order_Employee2" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Order_Supplier" FromRole="Order" ToRole="Supplier" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItem_Order" FromRole="Order" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="purchaseordernumber" />
+      <PropertyRef Name="itemcode" />
+    </Key>
+    <Property Name="purchaseordernumber" Type="Int32" Nullable="false" />
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="orderquantity" Type="Int32" Nullable="false" />
+    <Property Name="cost" Type="Double" Nullable="false" />
+    <Property Name="remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_OrderItem_Item" FromRole="OrderItem" ToRole="Item" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderItem_Order" FromRole="OrderItem" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Requisition">
+    <Key>
+      <PropertyRef Name="requisitionid" />
+    </Key>
+    <Property Name="requisitionid" Type="Int32" Nullable="false" />
+    <Property Name="deptcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="employeecode" Type="Int32" Nullable="false" />
+    <Property Name="approvercode" Type="Int32" />
+    <Property Name="approvaldate" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Requisition_Department" FromRole="Requisition" ToRole="Department" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Requisition_Employee" FromRole="Requisition" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_Requisition_Employee1" FromRole="Requisition" ToRole="Employee" />
+    <NavigationProperty Name="RequisitionItems" Relationship="Self.FK_RequisitionItem_Requisition" FromRole="Requisition" ToRole="RequisitionItem" />
+  </EntityType>
+  <EntityType Name="RequisitionItem">
+    <Key>
+      <PropertyRef Name="requisitionid" />
+      <PropertyRef Name="itemcode" />
+    </Key>
+    <Property Name="requisitionid" Type="Int32" Nullable="false" />
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_RequisitionItem_Item" FromRole="RequisitionItem" ToRole="Item" />
+    <NavigationProperty Name="Requisition" Relationship="Self.FK_RequisitionItem_Requisition" FromRole="RequisitionItem" ToRole="Requisition" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="suppliercode" />
+    </Key>
+    <Property Name="suppliercode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="suppliernamee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="contactname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="phonenumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="faxnumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="gstregistrationno" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Items" Relationship="Self.FK_Item_Supplier" FromRole="Supplier" ToRole="Item" />
+    <NavigationProperty Name="Items1" Relationship="Self.FK_Item_Supplier1" FromRole="Supplier" ToRole="Item" />
+    <NavigationProperty Name="Items2" Relationship="Self.FK_Item_Supplier2" FromRole="Supplier" ToRole="Item" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Supplier" FromRole="Supplier" ToRole="Order" />
+    <NavigationProperty Name="TenderQuotations" Relationship="Self.FK_TenderQuotation_Supplier" FromRole="Supplier" ToRole="TenderQuotation" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TenderQuotation">
+    <Key>
+      <PropertyRef Name="suppliercode" />
+      <PropertyRef Name="itemcode" />
+    </Key>
+    <Property Name="suppliercode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_TenderQuotation_Item" FromRole="TenderQuotation" ToRole="Item" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_TenderQuotation_Supplier" FromRole="TenderQuotation" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="transactionid" />
+    </Key>
+    <Property Name="transactionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="deptsupplier" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantitychange" Type="Int32" Nullable="false" />
+    <Property Name="balance" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_Transactions_Item" FromRole="Transactions" ToRole="Item" />
+  </EntityType>
+  <Association Name="FK_AdjustmentItem_AdjustmentVoucher">
+    <End Role="AdjustmentVoucher" Type="Self.AdjustmentVoucher" Multiplicity="1" />
+    <End Role="AdjustmentItem" Type="Self.AdjustmentItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdjustmentVoucher">
+        <PropertyRef Name="vouchernumber" />
+      </Principal>
+      <Dependent Role="AdjustmentItem">
+        <PropertyRef Name="vouchernumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdjustmentItem_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="AdjustmentItem" Type="Self.AdjustmentItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemcode" />
+      </Principal>
+      <Dependent Role="AdjustmentItem">
+        <PropertyRef Name="itemcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdjustmentVoucher_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="AdjustmentVoucher" Type="Self.AdjustmentVoucher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="AdjustmentVoucher">
+        <PropertyRef Name="clerkcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdjustmentVoucher_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="AdjustmentVoucher" Type="Self.AdjustmentVoucher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="AdjustmentVoucher">
+        <PropertyRef Name="approvercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="delegatecode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Disbursement_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Disbursement" Type="Self.Disbursement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="deptcode" />
+      </Principal>
+      <Dependent Role="Disbursement">
+        <PropertyRef Name="deptcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="deptcode" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="deptcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requisition_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Requisition" Type="Self.Requisition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="deptcode" />
+      </Principal>
+      <Dependent Role="Requisition">
+        <PropertyRef Name="deptcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Disbursement_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Disbursement" Type="Self.Disbursement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Disbursement">
+        <PropertyRef Name="representativecode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DisbursementItem_Disbursement">
+    <End Role="Disbursement" Type="Self.Disbursement" Multiplicity="1" />
+    <End Role="DisbursementItem" Type="Self.DisbursementItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disbursement">
+        <PropertyRef Name="disbursementid" />
+      </Principal>
+      <Dependent Role="DisbursementItem">
+        <PropertyRef Name="disbursementid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DisbursementItem_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="DisbursementItem" Type="Self.DisbursementItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemcode" />
+      </Principal>
+      <Dependent Role="DisbursementItem">
+        <PropertyRef Name="itemcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="storeclerkcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="approvercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employee2">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="receivercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requisition_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Requisition" Type="Self.Requisition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Requisition">
+        <PropertyRef Name="employeecode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requisition_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Requisition" Type="Self.Requisition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeecode" />
+      </Principal>
+      <Dependent Role="Requisition">
+        <PropertyRef Name="approvercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="suppliercode" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="supplier1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Supplier1">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="suppliercode" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="supplier2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Supplier2">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="suppliercode" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="supplier2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItem_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemcode" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="itemcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequisitionItem_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="RequisitionItem" Type="Self.RequisitionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemcode" />
+      </Principal>
+      <Dependent Role="RequisitionItem">
+        <PropertyRef Name="itemcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TenderQuotation_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="TenderQuotation" Type="Self.TenderQuotation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemcode" />
+      </Principal>
+      <Dependent Role="TenderQuotation">
+        <PropertyRef Name="itemcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemcode" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="itemcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="suppliercode" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="suppliercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItem_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="purchaseordernumber" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="purchaseordernumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequisitionItem_Requisition">
+    <End Role="Requisition" Type="Self.Requisition" Multiplicity="1" />
+    <End Role="RequisitionItem" Type="Self.RequisitionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requisition">
+        <PropertyRef Name="requisitionid" />
+      </Principal>
+      <Dependent Role="RequisitionItem">
+        <PropertyRef Name="requisitionid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TenderQuotation_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="TenderQuotation" Type="Self.TenderQuotation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="suppliercode" />
+      </Principal>
+      <Dependent Role="TenderQuotation">
+        <PropertyRef Name="suppliercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="team6adprojectdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdjustmentItems" EntityType="Self.AdjustmentItem" />
+    <EntitySet Name="AdjustmentVouchers" EntityType="Self.AdjustmentVoucher" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Disbursements" EntityType="Self.Disbursement" />
+    <EntitySet Name="DisbursementItems" EntityType="Self.DisbursementItem" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+    <EntitySet Name="Requisitions" EntityType="Self.Requisition" />
+    <EntitySet Name="RequisitionItems" EntityType="Self.RequisitionItem" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TenderQuotations" EntityType="Self.TenderQuotation" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <AssociationSet Name="FK_AdjustmentItem_AdjustmentVoucher" Association="Self.FK_AdjustmentItem_AdjustmentVoucher">
+      <End Role="AdjustmentVoucher" EntitySet="AdjustmentVouchers" />
+      <End Role="AdjustmentItem" EntitySet="AdjustmentItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdjustmentItem_Item" Association="Self.FK_AdjustmentItem_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="AdjustmentItem" EntitySet="AdjustmentItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdjustmentVoucher_Employee" Association="Self.FK_AdjustmentVoucher_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="AdjustmentVoucher" EntitySet="AdjustmentVouchers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdjustmentVoucher_Employee1" Association="Self.FK_AdjustmentVoucher_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="AdjustmentVoucher" EntitySet="AdjustmentVouchers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_Employee" Association="Self.FK_Department_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Disbursement_Department" Association="Self.FK_Disbursement_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Disbursement" EntitySet="Disbursements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requisition_Department" Association="Self.FK_Requisition_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Requisition" EntitySet="Requisitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Disbursement_Employee" Association="Self.FK_Disbursement_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Disbursement" EntitySet="Disbursements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DisbursementItem_Disbursement" Association="Self.FK_DisbursementItem_Disbursement">
+      <End Role="Disbursement" EntitySet="Disbursements" />
+      <End Role="DisbursementItem" EntitySet="DisbursementItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DisbursementItem_Item" Association="Self.FK_DisbursementItem_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="DisbursementItem" EntitySet="DisbursementItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employee1" Association="Self.FK_Order_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employee2" Association="Self.FK_Order_Employee2">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requisition_Employee" Association="Self.FK_Requisition_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Requisition" EntitySet="Requisitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requisition_Employee1" Association="Self.FK_Requisition_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Requisition" EntitySet="Requisitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Supplier" Association="Self.FK_Item_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Supplier1" Association="Self.FK_Item_Supplier1">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Supplier2" Association="Self.FK_Item_Supplier2">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItem_Item" Association="Self.FK_OrderItem_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequisitionItem_Item" Association="Self.FK_RequisitionItem_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="RequisitionItem" EntitySet="RequisitionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TenderQuotation_Item" Association="Self.FK_TenderQuotation_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="TenderQuotation" EntitySet="TenderQuotations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Item" Association="Self.FK_Transactions_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Supplier" Association="Self.FK_Order_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItem_Order" Association="Self.FK_OrderItem_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequisitionItem_Requisition" Association="Self.FK_RequisitionItem_Requisition">
+      <End Role="Requisition" EntitySet="Requisitions" />
+      <End Role="RequisitionItem" EntitySet="RequisitionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TenderQuotation_Supplier" Association="Self.FK_TenderQuotation_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="TenderQuotation" EntitySet="TenderQuotations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
