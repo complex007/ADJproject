@@ -13,73 +13,66 @@ namespace SS
     {
         string id = "";
         string action = "";
+        string reason = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
                 id = Request.QueryString["id"];
             if (Request.QueryString["action"] != null)
+            {
                 action = Request.QueryString["action"];
+                reason = TextBox1.Text.ToString();
+            }
+
+
 
             if (!IsPostBack)
             {
                 List<SOrder> orders = ClassList.findUnprovedOrder();
                 GridView2.DataSource = orders;
                 GridView2.DataBind();
-          
-               if(id!=null&&action!=null)
+
+                if (id != null && action != null)
                 {
-                    if(action.Equals("Details"))
+                    if (action.Equals("Details"))
                     {
-                        List<OrderItem> items = ClassList.findOrderItemByPurchaseOrder(Convert.ToInt32(id));                       
+                        List<OrderItem> items = ClassList.findOrderItemByPurchaseOrder(Convert.ToInt32(id));
                         GridView1.DataSource = items;
                         GridView1.DataBind();
                     }
-                    if(action.Equals("Reject"))
+                    if (action.Equals("Reject"))
                     {
-                        //SOrder rejorder = ClassList.findOrderByPurchaseOrder(Convert.ToInt32(id));
-                        //ClassList.deleteOrderByPurchaseOrder(Convert.ToInt32(id));
-                        //orders.Remove(rejorder);
-                        //GridView2.DataBind();
+                        
                         if (TextBox1.Text.Trim() != "")
                         {
                             SOrder rejorder = ClassList.findOrderByPurchaseOrder(Convert.ToInt32(id));
                             ClassList.deleteOrderByPurchaseOrder(Convert.ToInt32(id));
                             orders.Remove(rejorder);
-                           
-
-                            SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
-                            MailMessage mail = new MailMessage();
-                            string reason = TextBox1.Text;
-                            mail.Body = "Your order with purchase order number: " + rejorder.purchaseordernumber + " is rejected. Reason: " + reason;
-
-                            //Setting From , To and CC
-                            mail.From = new MailAddress("hellocomplex007@gmail.com", "MyWeb Site");
-                            mail.To.Add(new MailAddress("hellocomplex007@gmail.com"));
-                            //  mail.CC.Add(new MailAddress("843168572@qq.com"));
-                            smtpClient.Send(mail);
-                            TextBox1.Text = "";
-                            GridView2.DataBind();
+                            string message = "Your order: " + rejorder.purchaseordernumber + " is rejected. Reason: " + reason;
+                            ClassList.sendEmail(message);         
+                            TextBox1.Text = "";                         
+                            Response.Redirect("~/SSapproveRejectOrder.aspx");
                         }
                         else
                         {
-                            Label1.Text = "Please write in reject reason!";
+                            Label1.Text = "Please write in reject reason!" ;
                         }
 
                     }
-                    if(action.Equals("Approve"))
+                    if (action.Equals("Approve"))
                     {
                         SOrder apporder = ClassList.findOrderByPurchaseOrder(Convert.ToInt32(id));
                         ClassList.approveOrderByPurchaseOrder(Convert.ToInt32(id));
                         orders.Remove(apporder);
                         GridView2.DataBind();
-                        Label1.Text = "All the orders are approved today and planed to deliver at " + DateTime.Parse(ClassList.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy")+" .";
+                        Label1.Text = "All the orders are approved today and planed to deliver at " + DateTime.Parse(ClassList.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy") + " .";
                     }
 
                     if (action.Equals("ApproveAll"))
                     {
                         foreach (SOrder i in orders)
                         {
-                            ClassList.approveOrderByPurchaseOrder(i.purchaseordernumber);                     
+                            ClassList.approveOrderByPurchaseOrder(i.purchaseordernumber);
                         }
 
                         GridView2.DataSource = null;
@@ -93,19 +86,11 @@ namespace SS
                             foreach (SOrder i in orders)
                             {
                                 ClassList.deleteOrderByPurchaseOrder(i.purchaseordernumber);
-                                SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
-                                MailMessage mail = new MailMessage();
-                                string reason = TextBox1.Text;
-                                mail.Body = "Your order with purchase order number: " + i.purchaseordernumber + " is rejected. Reason: " + reason;
-                                //Setting From , To and CC
-                                mail.From = new MailAddress("hellocomplex007@gmail.com", "MyWeb Site");
-                                mail.To.Add(new MailAddress("hellocomplex007@gmail.com"));
-                                //  mail.CC.Add(new MailAddress("843168572@qq.com"));
-                                smtpClient.Send(mail);
-
-                                TextBox1.Text = DateTime.Today.ToString();
+                                string message = "Your order: " + i.purchaseordernumber + " is rejected. Reason: " + reason;
+                                ClassList.sendEmail(message);
+                              
                             }
-
+                            TextBox1.Text = "";
                             GridView2.DataSource = null;
                             GridView2.DataBind();
                             Label1.Text = "All orders are rejected .";
@@ -116,28 +101,56 @@ namespace SS
                         }
                     }
                 }
-              
-               
+
+
             }
-           
-            
+            else
+            {
+
+                if (action.Equals("Reject"))
+                {
+                  
+                    if (TextBox1.Text.Trim() != "")
+                    {                     
+                        SOrder rejorder = ClassList.findOrderByPurchaseOrder(Convert.ToInt32(id));
+                        ClassList.deleteOrderByPurchaseOrder(Convert.ToInt32(id));
+                        string message = "Your order: " + rejorder.purchaseordernumber + " is rejected. Reason: " + reason;
+                        ClassList.sendEmail(message);
+                        TextBox1.Text = "";                    
+                        Response.Redirect("~/SSapproveRejectOrder.aspx");
+                    }
+                    else
+                    {
+                        Label1.Text = "Please write in reject reason!";
+                    }
+                }
+                if (action.Equals("RejectAll"))
+                {
+                    List<SOrder> orders = ClassList.findUnprovedOrder();
+                    if (TextBox1.Text.Trim() != "")
+                    {
+                        foreach (SOrder i in orders)
+                        {
+                            ClassList.deleteOrderByPurchaseOrder(i.purchaseordernumber);
+                            string message = "Your order: " + i.purchaseordernumber + " is rejected. Reason: " + reason;
+                            ClassList.sendEmail(message);
+
+                        }
+                        TextBox1.Text = "";
+                        GridView2.DataSource = null;
+                        GridView2.DataBind();
+                        Label1.Text = "All orders are rejected .";
+                    }
+                    else
+                    {
+                        Label1.Text = "Please write in reject reason!";
+                    }
+                }
+
+            }
           
         }
 
-        protected void reject_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < GridView1.Rows.Count; i++)
-            {
-                CheckBox checkboxdelete = ((CheckBox)GridView1.Rows[i].FindControl("reject"));
-
-                if (checkboxdelete.Checked == true)
-                {
-                    Label lblrollno = ((Label)GridView1.Rows[i].FindControl("lblrollno"));
-
-                    int rolNo = Convert.ToInt32(lblrollno.Text);
-                  
-                }
-            }
-        }
+       
     }
 }
