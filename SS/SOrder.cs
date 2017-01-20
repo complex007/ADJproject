@@ -22,7 +22,7 @@ namespace SS
     
         public int purchaseordernumber { get; set; }
         public string suppliercode { get; set; }
-        public Nullable<int> storeclerkcode { get; set; }
+        public int storeclerkcode { get; set; }
         public System.DateTime orderdate { get; set; }
         public Nullable<double> totalcost { get; set; }
         public Nullable<int> approvercode { get; set; }

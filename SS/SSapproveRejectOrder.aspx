@@ -33,7 +33,7 @@
     <table style="width: 1069px; height: 188px">
         <tr>
             <td class="modal-lg" style="width: 1707px">
-                 <asp:Label ID="Label1" runat="server" Text="Label" ></asp:Label>
+                 <asp:Label ID="Label1" runat="server" Text="" ></asp:Label>
             </td>
            <td style="width: 684px"><asp:LinkButton runat="server" ID="approveall"><a href='SSapproveRejectOrder.aspx?action=ApproveAll'>Approve All</a> </asp:LinkButton></td>
              <td>
@@ -46,7 +46,8 @@
              <td> <asp:Label ID="Label2" runat="server" Text="Reject Reason : "></asp:Label></td>
         </tr>
         <tr>
-            <td class="modal-lg" style="width: 1707px"></td>
+            <td class="modal-lg" style="width: 1707px">
+                &nbsp;</td>
              <td style="width: 684px">
                 
             </td>

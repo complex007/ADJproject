@@ -27,7 +27,7 @@ namespace SS
     
         public string itemcode { get; set; }
         public string category { get; set; }
-        public string itemdescripion { get; set; }
+        public string itemdescription { get; set; }
         public string bin { get; set; }
         public int quantityonhand { get; set; }
         public int reorderlevel { get; set; }
@@ -36,6 +36,7 @@ namespace SS
         public string supplier1 { get; set; }
         public string supplier2 { get; set; }
         public string supplier3 { get; set; }
+        public int del { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdjustmentItem> AdjustmentItems { get; set; }

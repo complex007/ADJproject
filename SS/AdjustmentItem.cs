@@ -16,7 +16,7 @@ namespace SS
     {
         public int vouchernumber { get; set; }
         public string itemcode { get; set; }
-        public Nullable<int> quantity { get; set; }
+        public int quantity { get; set; }
         public string reason { get; set; }
     
         public virtual AdjustmentVoucher AdjustmentVoucher { get; set; }

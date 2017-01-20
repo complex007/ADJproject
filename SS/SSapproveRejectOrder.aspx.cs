@@ -29,8 +29,16 @@ namespace SS
             if (!IsPostBack)
             {
                 List<SOrder> orders = ClassList.findUnprovedOrder();
-                GridView2.DataSource = orders;
-                GridView2.DataBind();
+                if(orders.Count==0)
+                {
+                    Label1.Text = "No unpproved order.";
+                }
+                else
+                {
+                    GridView2.DataSource = orders;
+                    GridView2.DataBind();
+                }
+              
 
                 if (id != null && action != null)
                 {

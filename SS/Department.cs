@@ -31,6 +31,7 @@ namespace SS
         public Nullable<int> delegatecode { get; set; }
         public Nullable<System.DateTime> startdate { get; set; }
         public Nullable<System.DateTime> enddate { get; set; }
+        public int del { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

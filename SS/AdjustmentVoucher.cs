@@ -25,7 +25,7 @@ namespace SS
         public double cost { get; set; }
         public int clerkcode { get; set; }
         public Nullable<int> approvercode { get; set; }
-        public Nullable<System.DateTime> approveddate { get; set; }
+        public Nullable<System.DateTime> approvaldate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdjustmentItem> AdjustmentItems { get; set; }

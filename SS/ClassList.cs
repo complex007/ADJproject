@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 
 namespace SS
 {
     public class ClassList
     {
-       static  team6adprojectdbEntities2 ds = new team6adprojectdbEntities2();
+       static  team6adprojectdbEntities3 ds = new team6adprojectdbEntities3();
         public static List<SOrder> findUnprovedOrder()
         {
             List<SOrder>  orders = new List<SOrder>();         
@@ -97,6 +98,24 @@ namespace SS
             }
             return endday;
         }
+
+        public static void sendEmail(string message)
+        {
+            SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
+            MailMessage mail = new MailMessage();
+            // string reason = TextBox1.Text;
+            mail.Body = message;
+
+            //Setting From , To and CC
+            mail.From = new MailAddress("hellocomplex007@gmail.com");
+            mail.To.Add(new MailAddress("hellocomplex007@gmail.com"));
+            //  mail.CC.Add(new MailAddress("843168572@qq.com"));
+            smtpClient.Send(mail);
+        }
+
+
+
+
            
     }
 }

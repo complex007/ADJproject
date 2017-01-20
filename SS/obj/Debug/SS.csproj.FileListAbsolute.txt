@@ -102,3 +102,4 @@ D:\template\SS\ADJproject\SS\bin\Microsoft.ApplicationInsights.xml
 D:\template\SS\ADJproject\SS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\template\SS\ADJproject\SS\obj\Debug\SS.dll
 D:\template\SS\ADJproject\SS\obj\Debug\SS.pdb
+D:\template\SS\ADJproject\SS\obj\Debug\SS.csprojResolveAssemblyReference.cache

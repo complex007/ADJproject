@@ -13,10 +13,10 @@ namespace SS
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class team6adprojectdbEntities2 : DbContext
+    public partial class team6adprojectdbEntities3 : DbContext
     {
-        public team6adprojectdbEntities2()
-            : base("name=team6adprojectdbEntities2")
+        public team6adprojectdbEntities3()
+            : base("name=team6adprojectdbEntities3")
         {
         }
     

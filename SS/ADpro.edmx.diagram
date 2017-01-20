@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f3956d17704a49588b35dddc7268ec48" Name="Diagram1">
-        <EntityTypeShape EntityType="team6adprojectdbModel.AdjustmentItem" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.AdjustmentVoucher" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Department" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Disbursement" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.DisbursementItem" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Employee" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Item" Width="1.5" PointX="8" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.OrderItem" Width="1.5" PointX="10.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Requisition" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.RequisitionItem" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.SOrder" Width="1.5" PointX="8" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Supplier" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.TenderQuotation" Width="1.5" PointX="11.25" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="team6adprojectdbModel.Transaction" Width="1.5" PointX="10.25" PointY="19.25" IsExpanded="true" />
+      <Diagram DiagramId="e22650584fb645f69f7315b3d53358b0" Name="Diagram1">
+        <EntityTypeShape EntityType="team6adprojectdbModel.AdjustmentItem" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.AdjustmentVoucher" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Department" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Disbursement" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.DisbursementItem" Width="1.5" PointX="10.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Employee" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Item" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.OrderItem" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Requisition" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.RequisitionItem" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.SOrder" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Supplier" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.TenderQuotation" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team6adprojectdbModel.Transaction" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="team6adprojectdbModel.FK_AdjustmentItem_AdjustmentVoucher" ManuallyRouted="false" />
         <AssociationConnector Association="team6adprojectdbModel.FK_AdjustmentItem_Item" ManuallyRouted="false" />
         <AssociationConnector Association="team6adprojectdbModel.FK_AdjustmentVoucher_Employee" ManuallyRouted="false" />

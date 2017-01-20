@@ -25,12 +25,13 @@ namespace SS
         }
     
         public string suppliercode { get; set; }
-        public string suppliernamee { get; set; }
+        public string suppliername { get; set; }
         public string contactname { get; set; }
         public string phonenumber { get; set; }
         public string faxnumber { get; set; }
         public string address { get; set; }
         public string gstregistrationno { get; set; }
+        public int del { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="team6adprojectdbModelStoreContainer" CdmEntityContainer="team6adprojectdbEntities3">
+    <EntitySetMapping Name="AdjustmentItems">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.AdjustmentItem">
+        <MappingFragment StoreEntitySet="AdjustmentItem">
+          <ScalarProperty Name="vouchernumber" ColumnName="vouchernumber" />
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdjustmentVouchers">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.AdjustmentVoucher">
+        <MappingFragment StoreEntitySet="AdjustmentVoucher">
+          <ScalarProperty Name="vouchernumber" ColumnName="vouchernumber" />
+          <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="clerkcode" ColumnName="clerkcode" />
+          <ScalarProperty Name="approvercode" ColumnName="approvercode" />
+          <ScalarProperty Name="approvaldate" ColumnName="approvaldate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="deptcode" ColumnName="deptcode" />
+          <ScalarProperty Name="deptname" ColumnName="deptname" />
+          <ScalarProperty Name="contactname" ColumnName="contactname" />
+          <ScalarProperty Name="phoneno" ColumnName="phoneno" />
+          <ScalarProperty Name="faxno" ColumnName="faxno" />
+          <ScalarProperty Name="collectionpoint" ColumnName="collectionpoint" />
+          <ScalarProperty Name="delegatecode" ColumnName="delegatecode" />
+          <ScalarProperty Name="startdate" ColumnName="startdate" />
+          <ScalarProperty Name="enddate" ColumnName="enddate" />
+          <ScalarProperty Name="del" ColumnName="del" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Disbursements">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Disbursement">
+        <MappingFragment StoreEntitySet="Disbursement">
+          <ScalarProperty Name="disbursementid" ColumnName="disbursementid" />
+          <ScalarProperty Name="deptcode" ColumnName="deptcode" />
+          <ScalarProperty Name="representativecode" ColumnName="representativecode" />
+          <ScalarProperty Name="collectiondate" ColumnName="collectiondate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisbursementItems">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.DisbursementItem">
+        <MappingFragment StoreEntitySet="DisbursementItem">
+          <ScalarProperty Name="disbursementid" ColumnName="disbursementid" />
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="allocatedquantity" ColumnName="allocatedquantity" />
+          <ScalarProperty Name="actualquantity" ColumnName="actualquantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="employeecode" ColumnName="employeecode" />
+          <ScalarProperty Name="employeename" ColumnName="employeename" />
+          <ScalarProperty Name="employeeemail" ColumnName="employeeemail" />
+          <ScalarProperty Name="deptcode" ColumnName="deptcode" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="del" ColumnName="del" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="itemdescription" ColumnName="itemdescription" />
+          <ScalarProperty Name="bin" ColumnName="bin" />
+          <ScalarProperty Name="quantityonhand" ColumnName="quantityonhand" />
+          <ScalarProperty Name="reorderlevel" ColumnName="reorderlevel" />
+          <ScalarProperty Name="reorderquantity" ColumnName="reorderquantity" />
+          <ScalarProperty Name="unitofmeasure" ColumnName="unitofmeasure" />
+          <ScalarProperty Name="supplier1" ColumnName="supplier1" />
+          <ScalarProperty Name="supplier2" ColumnName="supplier2" />
+          <ScalarProperty Name="supplier3" ColumnName="supplier3" />
+          <ScalarProperty Name="del" ColumnName="del" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItems">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.OrderItem">
+        <MappingFragment StoreEntitySet="OrderItem">
+          <ScalarProperty Name="purchaseordernumber" ColumnName="purchaseordernumber" />
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="orderquantity" ColumnName="orderquantity" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requisitions">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Requisition">
+        <MappingFragment StoreEntitySet="Requisition">
+          <ScalarProperty Name="requisitionid" ColumnName="requisitionid" />
+          <ScalarProperty Name="deptcode" ColumnName="deptcode" />
+          <ScalarProperty Name="employeecode" ColumnName="employeecode" />
+          <ScalarProperty Name="approvercode" ColumnName="approvercode" />
+          <ScalarProperty Name="approvaldate" ColumnName="approvaldate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequisitionItems">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.RequisitionItem">
+        <MappingFragment StoreEntitySet="RequisitionItem">
+          <ScalarProperty Name="requisitionid" ColumnName="requisitionid" />
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOrders">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.SOrder">
+        <MappingFragment StoreEntitySet="SOrder">
+          <ScalarProperty Name="purchaseordernumber" ColumnName="purchaseordernumber" />
+          <ScalarProperty Name="suppliercode" ColumnName="suppliercode" />
+          <ScalarProperty Name="storeclerkcode" ColumnName="storeclerkcode" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="totalcost" ColumnName="totalcost" />
+          <ScalarProperty Name="approvercode" ColumnName="approvercode" />
+          <ScalarProperty Name="approvaldate" ColumnName="approvaldate" />
+          <ScalarProperty Name="expecteddeliverydate" ColumnName="expecteddeliverydate" />
+          <ScalarProperty Name="deliveryordernumber" ColumnName="deliveryordernumber" />
+          <ScalarProperty Name="deliverydate" ColumnName="deliverydate" />
+          <ScalarProperty Name="receivercode" ColumnName="receivercode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="suppliercode" ColumnName="suppliercode" />
+          <ScalarProperty Name="suppliername" ColumnName="suppliername" />
+          <ScalarProperty Name="contactname" ColumnName="contactname" />
+          <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+          <ScalarProperty Name="faxnumber" ColumnName="faxnumber" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="gstregistrationno" ColumnName="gstregistrationno" />
+          <ScalarProperty Name="del" ColumnName="del" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TenderQuotations">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.TenderQuotation">
+        <MappingFragment StoreEntitySet="TenderQuotation">
+          <ScalarProperty Name="suppliercode" ColumnName="suppliercode" />
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="team6adprojectdbModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+          <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="deptsupplier" ColumnName="deptsupplier" />
+          <ScalarProperty Name="quantitychange" ColumnName="quantitychange" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
